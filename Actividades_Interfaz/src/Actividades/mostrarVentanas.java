@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 public class mostrarVentanas {
 	
 	private JFrame ventana1;
+	private JFrame ventana2;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -17,7 +18,7 @@ public class mostrarVentanas {
 					mostrarVentanas window = new mostrarVentanas();
 					window.ventana1.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage().toString());
 				}
 			}
 		});
@@ -25,8 +26,9 @@ public class mostrarVentanas {
 	
 	public void ventana1() {
 		
-		//Creamos una ventana y le apropiamos un tamaño determinado
+		//Creamos una ventana y le apropiamos un tamaño determinado, ademas de cerrar su proceso con "EXIT_ON_CLOSE"
 		ventana1 = new JFrame("Varias ventanas");
+		ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana1.setSize(400, 300);
 		
 		//Hacemos que la ventana no pueda variar su tamaño
@@ -42,20 +44,13 @@ public class mostrarVentanas {
 			}
 		});
 		ventana1.getContentPane().add(boton);
-		ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		/*
-		JLabel panel = new JLabel();
-		panel.setBounds(10, 10, 50, 50);
-		panel.setText("Hola buenas tardes");
-		ventana.getContentPane().add(panel);
-		*/
 	}
 	
 	public void ventana2() {
 		
 		//Creamos una ventana y le damos sus respectivas caracteristicas
-		JFrame ventana2 = new JFrame("Ventana 2");
+		ventana2 = new JFrame("Ventana 2");
 		ventana2.setVisible(true);
 		ventana2.setSize(300, 200);
 		
@@ -73,8 +68,7 @@ public class mostrarVentanas {
 			}
 		});
 		ventana2.getContentPane().add(boton2);
-		
-		ventana2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);		
+		ventana2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 	
