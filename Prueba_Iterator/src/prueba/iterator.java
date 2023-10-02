@@ -8,6 +8,7 @@ public class iterator {
 
 	static Scanner sc = new Scanner(System.in);
 	static int i=0;
+	static int tamanyo = 5;
 
 	//Creamos un Map
 	static Map<Integer, String> mapa = new HashMap<>();
@@ -46,49 +47,43 @@ public class iterator {
 		}while(true);
 
 	}
-	
+
 	public static void mostrarDatos() {
-		
+
 		//Recorremos nuestro hashMap con un bucle "for-each"
 		for(Map.Entry<Integer, String> elemento: mapa.entrySet()) {
-			
+
 			//Obtenemos la clave y el valor y lo guardamos en variables
 			int clave = elemento.getKey();
 			String valor = elemento.getValue();
-			
+
 			//Mostramos los datos por consola
 			System.out.println("Clave: " + clave + " Valor: " + valor);
 		}
-		
-		
+
+
 	}
 
 	public static void insertarDatos() {
 
-		do {
+		if(mapa.size() >= tamanyo) {
+			System.out.println("Lo sentimos, no hay más capacidad!");
+		}else {
 			System.out.print("Introduce el valor que quiera introducir: ");
 			String valor_nuevo = sc.nextLine();
 			
 			mapa.put((i+1), valor_nuevo);
 			i++;
-			
-			System.out.println("¿Quieres introducir otro dato? (si / no)");
-			String opcion = sc.nextLine();
-			if (!opcion.equalsIgnoreCase("si")) break;
-			
-		} while (true);
-		
+		}
 	}
-	
+
 	public static void eliminarDatos() {
-		
+
 		System.out.print("Introduce la clave del valor que desee eliminar: ");
 		int clave = sc.nextInt();
 		sc.nextLine();
 		if(mapa.containsKey(clave)) mapa.remove(clave);
 		else System.out.println("No se ha podido encontrar la clave: '" + clave +"', intentalo de nuevo.");
-		
-		
 	}
 
 	public static void main(String[] args) {
