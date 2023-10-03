@@ -28,6 +28,7 @@ public class calculadora {
 	private JButton botonPunto;
 	private JButton botonCero;
 	private JButton botonIgual;
+	private JButton botonCE;
 	private String operacion;
 
 
@@ -115,11 +116,11 @@ public class calculadora {
 			buttons[0][j].setText(buttons[2][j].getText());
 			buttons[2][j].setText(contenidoFila1);
 		}
-
+		
 		//Actualizamos la ventana
 		frame.revalidate();
-
-
+		
+		
 		//Boton DIVIDIR
 		botonDividir = new JButton("÷");
 		botonDividir.setBounds(300, 150, 70, 50);
@@ -224,6 +225,20 @@ public class calculadora {
 			}
 		});
 		frame.getContentPane().add(botonIgual);
-
+		
+		//Boton CE (Limpieza de contenido)
+		botonCE = new JButton("CE");
+		botonCE.setBounds(300, 115, 70, 20);
+		Font fuenteCE = new Font("Arial", Font.BOLD, 12);
+		botonCE.setFont(fuenteCE);
+		botonCE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+				textField.requestFocusInWindow();
+			}
+		});
+		frame.getContentPane().add(botonCE);
+		
+		
 	}
 }
