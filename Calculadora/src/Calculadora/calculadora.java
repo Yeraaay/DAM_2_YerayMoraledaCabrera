@@ -106,21 +106,8 @@ public class calculadora {
 				frame.getContentPane().add(buttons[i][j]);
 			}
 		}
-
-		/*
-		 * Intercambiamos el contenido de la primera fila por la tercera fila obteniendo el contenido de una fila
-		 * con "getText()" y agregando ese contenido a la otra.
-		 */
-		for (int j=0; j<3; j++) {
-			String contenidoFila1 = buttons[0][j].getText();
-			buttons[0][j].setText(buttons[2][j].getText());
-			buttons[2][j].setText(contenidoFila1);
-		}
-
-		//Actualizamos la ventana
-		frame.revalidate();
-
-
+		
+		
 		//Boton DIVIDIR
 		botonDividir = new JButton("÷");
 		botonDividir.setBounds(300, 150, 70, 50);
