@@ -6,12 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Iterator;
-import java.util.regex.Pattern;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,7 +19,7 @@ import java.awt.Color;
 public class calculadora {
 
 	private JFrame frame;
-	private JTextField textField;
+	private static JTextField textField;
 	private JButton[][] buttons;
 	private JButton botonDividir;
 	private JButton botonSumar;
@@ -116,11 +116,11 @@ public class calculadora {
 			buttons[0][j].setText(buttons[2][j].getText());
 			buttons[2][j].setText(contenidoFila1);
 		}
-		
+
 		//Actualizamos la ventana
 		frame.revalidate();
-		
-		
+
+
 		//Boton DIVIDIR
 		botonDividir = new JButton("÷");
 		botonDividir.setBounds(300, 150, 70, 50);
@@ -196,7 +196,7 @@ public class calculadora {
 			}
 		});
 		frame.getContentPane().add(botonCero);
-
+		
 		//Boton IGUAL
 		botonIgual = new JButton("=");
 		botonIgual.setBounds(210, 390, 70, 50);
@@ -204,28 +204,36 @@ public class calculadora {
 		botonIgual.setBackground(Color.GRAY);
 		botonIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String contenido = textField.getText();
-				if( operacion != null ) {
-					String[] numerosCalcular = contenido.split(Pattern.quote(operacion));
-					if (numerosCalcular.length == 2 ) {
-						double numero1 = Double.parseDouble(numerosCalcular[0]);
-						double numero2 = Double.parseDouble(numerosCalcular[1]);
-						double resultado = 0.0;
-						if (operacion.equals("+")) resultado = numero1 + numero2;
-						else if (operacion.equals("-")) resultado = numero1 - numero2;
-						else if (operacion.equals("÷")) {
-							if (numero2 != 0) resultado = numero1 / numero2;
-						}
-						else if (operacion.equals("*")) resultado = numero1 * numero2;
-						
-						textField.setText(String.valueOf(resultado));
-					}
-				}
+				
+				calcularOperacion();
 				textField.requestFocusInWindow();
+				
+				/*
+				 * Esta es una forma de hacerla, pero que nos permite solo ejecutar una operación entre 2 valores.
+				 * Si queremos que haya una concatenación de operaciones, tendremos que usar un "Stack" como antes hemos usado.
+				 */
+
+				//				String contenido = textField.getText();
+				//				if( operacion != null ) {
+				//					String[] numerosCalcular = contenido.split(Pattern.quote(operacion));
+				//					if (numerosCalcular.length == 2 ) {
+				//						double numero1 = Double.parseDouble(numerosCalcular[0]);
+				//						double numero2 = Double.parseDouble(numerosCalcular[1]);
+				//						double resultado = 0.0;
+				//						if (operacion.equals("+")) resultado = numero1 + numero2;
+				//						else if (operacion.equals("-")) resultado = numero1 - numero2;
+				//						else if (operacion.equals("÷")) {
+				//							if (numero2 != 0) resultado = numero1 / numero2;
+				//						}
+				//						else if (operacion.equals("*")) resultado = numero1 * numero2;
+				//						
+				//						textField.setText(String.valueOf(resultado));
+				//					}
+				//				}
 			}
 		});
 		frame.getContentPane().add(botonIgual);
-		
+
 		//Boton CE (Limpieza de contenido)
 		botonCE = new JButton("CE");
 		botonCE.setBounds(300, 115, 70, 20);
@@ -238,7 +246,73 @@ public class calculadora {
 			}
 		});
 		frame.getContentPane().add(botonCE);
+
+
+	}
+
+	public static double calcularOperacion() {
+		//Creamos 2 "Stack" diferentes en el que iremos apilando los numeros obtenidos y los distintos operadores
+		Stack<Double> pilaNumeros = new Stack<>();
+		Stack<Character> pilaOperadores = new Stack<>();
+
+		String contenido = textField.getText();
+
+		for (int i=0; i<contenido.length(); i++) {
+			char caracter = contenido.charAt(i);
+			if (Character.isDigit(caracter) || caracter == '.') {
+				StringBuilder numeroTemporal = new StringBuilder();
+				//Si el caracter es un dígito, lo agregamos a la variable temporal de numeros
+				numeroTemporal.append(caracter);
+				pilaNumeros.push(Double.parseDouble(numeroTemporal.toString()));
+				
+			}else if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '÷') {
+				while (!pilaOperadores.isEmpty() && tienePrioridad(caracter, pilaOperadores.peek())) {
+					realizarOperaciones(pilaNumeros, pilaOperadores);
+				}
+				pilaOperadores.push(caracter);
+			}
+		}
+
+		while (!pilaOperadores.isEmpty()) realizarOperaciones(pilaNumeros, pilaOperadores);
+
+		//El resultado final de la operacion se encuentra arriba de la pila de numeros
+		double resultado = pilaNumeros.pop();
+		textField.setText(Double.toString(resultado));
 		
+		return resultado;
+	}
+
+	public static boolean tienePrioridad(char numero1, char numero2) {
+		if ((numero2 == '*' || numero2 == '÷') && (numero1 == '+' || numero1 == '-') ) {
+			return false;
+		}
+		return true;
+	}
+
+	public static void realizarOperaciones(Stack<Double> pilaNumeros, Stack<Character> pilaOperadores) {
+		//Sacamos el operador del Stack de operadores mediante el método "pop()"
+		char operador = pilaOperadores.pop();
+		//Hacemos lo mismo con el Stack de numeros
+		double num1 = pilaNumeros.pop();
+		double num2 = pilaNumeros.pop();
 		
+		double resultado = 0.0;
+
+		switch (operador) {
+		case '+':
+			resultado = num1 + num2;
+			break;
+		case '-':
+			resultado = num1 - num2;
+			break;
+		case '*':
+			resultado = num1 * num2;
+			break;
+		case '÷':
+			if (num2 != 0) resultado = num1 / num2;
+			else textField.setText("ERROR");
+			break;
+		}
+		pilaNumeros.push(resultado);
 	}
 }
