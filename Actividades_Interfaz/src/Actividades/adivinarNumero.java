@@ -88,7 +88,7 @@ public class adivinarNumero {
                     labelFinal.setText("¡Correcto! El número es " + numeroRandom);
                     textField.setEnabled(false);
                 } else if (numero < numeroRandom) {
-                    labelFinal.setText("El número a adivinar es mayor. Intentos: " + --intentos + "." + numeroRandom);
+                    labelFinal.setText("El número a adivinar es mayor. Intentos: " + --intentos + ".");
                 } else if (numero > numeroRandom) {
                     labelFinal.setText("El número a adivinar es menor. Intentos: " + --intentos + ".");
                 }

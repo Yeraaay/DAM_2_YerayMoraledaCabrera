@@ -129,7 +129,7 @@ public class calculadora {
 		botonDividir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				operacion = "/";
-				textField.setText(textField.getText() + "÷");
+				textField.setText(textField.getText() + "/");
 				textField.requestFocusInWindow();
 			}
 		});
@@ -229,9 +229,7 @@ public class calculadora {
 		//Boton IGUAL
 		botonIgual = new JButton("=");
 		botonIgual.setBounds(210, 390, 70, 50);
-		botonIgual.setFont(fuente);
-		botonIgual.setForeground(Color.WHITE);
-		botonIgual.setBackground(Color.GRAY);
+		botonIgual.setFont(fuente);		botonIgual.setBackground(Color.GREEN);
 		botonIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -333,15 +331,13 @@ public class calculadora {
 		frame.getContentPane().add(botonMemoriaRecuperar);
 		
 		textField.addKeyListener(new KeyAdapter() {
-		    @Override
 		    public void keyTyped(KeyEvent e) {
 		        char tecla = e.getKeyChar();
 		        if (!Character.isDigit(tecla) && tecla != '.') {
 		            e.consume();
 		        }
 		    }
-
-		    @Override
+		    
 		    public void keyPressed(KeyEvent e) {
 		        char tecla = e.getKeyChar();
 		        if (tecla == KeyEvent.VK_ENTER) {
