@@ -8,35 +8,48 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import Vista.InterfazGrafica_Mapa;
+import Vista.Vista;
 
-public class Logica_Mapa implements ActionListener {
+public class Controlador implements ActionListener {
 
-	static InterfazGrafica_Mapa vista;
-	static Map<String, Double> mapaNotas = new HashMap<String, Double>();
+	static Vista vista;
+	static Map<Integer, Producto> mapaInventario = new HashMap<Integer, Producto>();
+	static int randomKey;
 
 	//El constructor recibe por parámetro un objeto de tipo "InterfazGrafica_Mapa"
-	public Logica_Mapa(InterfazGrafica_Mapa vista_interfaz) {
-		Logica_Mapa.vista=vista_interfaz;
+	public Controlador(Vista vista_interfaz) {
+		Vista.vista=vista_interfaz;
+	}
+
+	public static int generarKeyRandom() {
+		randomKey = (int) (Math.random()*100+1);
+
+		//Devolvemos el número radnom generado
+		return randomKey;
 	}
 
 	//Este método se encarga de la escucha de los eventos de cada botón de la interfaz
 	public void escucharEventos() {        
-		for(int i=0; i<InterfazGrafica_Mapa.botones.length; i++) {
-			InterfazGrafica_Mapa.botones[i].addActionListener(this);
+		for(int i=0; i<Vista.botones.length; i++) {
+			Vista.botones[i].addActionListener(this);
 		}
 	}
 
-	//Llenamos nuestro mapa con datos por defecto
-	public static void datosPorDefecto(Map<String, Double> mapaNotas) {
-		//Añadimos valores por defecto
-		mapaNotas.put("José", 7.9);
-		mapaNotas.put("Elena", 3.6);
-		mapaNotas.put("Cristina", 9.2);
-		mapaNotas.put("Mario", 8.0);
-		mapaNotas.put("Lucas", 5.1);
-		mapaNotas.put("Pepe", 6.8);
-		mapaNotas.put("Lola", 10.0);
+	//Añadimos datos por defecto a nuestro mapa, en este caso, metemos datos de nuestro objeto Producto
+	public static void datosPorDefecto(Map<Integer, Producto> mapaNotas) {
+		//Guardamos un número random y la introducimos como clave en nuestro mapa
+		do {
+			
+			
+			//Añadimos valores por defecto
+			mapaNotas.put("José", 7.9);
+			mapaNotas.put("Elena", 3.6);
+			mapaNotas.put("Cristina", 9.2);
+			mapaNotas.put("Mario", 8.0);
+			mapaNotas.put("Lucas", 5.1);
+			mapaNotas.put("Pepe", 6.8);
+			mapaNotas.put("Lola", 10.0);
+		}while(true);
 	}
 
 	public static void aniadirDatos() {
@@ -161,23 +174,23 @@ public class Logica_Mapa implements ActionListener {
 		}
 
 		//Actualizamos el modelo de la tabla
-		InterfazGrafica_Mapa.tabla.setModel(modelo);
+		Vista.tabla.setModel(modelo);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(InterfazGrafica_Mapa.botones[0])) {
+		if (e.getSource().equals(Vista.botones[0])) {
 			aniadirDatos();
 			mostrarDatos();
 		}
-		if (e.getSource().equals(InterfazGrafica_Mapa.botones[1])) {
+		if (e.getSource().equals(Vista.botones[1])) {
 			eliminarDatos();
 			mostrarDatos();
 		}
-		if (e.getSource().equals(InterfazGrafica_Mapa.botones[2])) {
+		if (e.getSource().equals(Vista.botones[2])) {
 			actualizarDatos();
 			mostrarDatos();
 		}
-		if (e.getSource().equals(InterfazGrafica_Mapa.botones[3])) {
+		if (e.getSource().equals(Vista.botones[3])) {
 			mostrarDatos();
 			mostrarDatos();
 		}

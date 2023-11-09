@@ -8,7 +8,7 @@ public class Main_Mapa {
 		
 		InterfazGrafica_Mapa interfacGrafica = new InterfazGrafica_Mapa();
 		
-		interfacGrafica.show();
+		interfacGrafica.setVisible(true);
 		
 	}
 	

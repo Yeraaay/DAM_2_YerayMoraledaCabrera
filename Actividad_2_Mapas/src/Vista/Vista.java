@@ -10,20 +10,21 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.jtattoo.plaf.mint.MintLookAndFeel;
+import com.jtattoo.plaf.texture.TextureLookAndFeel;
 
-import Controlador.Logica_Mapa;
+import Controlador.Controlador;
 
-public class InterfazGrafica_Mapa extends JFrame {
+public class Vista extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private static JPanel contentPane;
-    private static String[] arrayBotones = {"Añadir Nota", "Eliminar", "Actualizar", "Ver notas"};
+    private static String[] arrayBotones = {"Añadir Producto", "Ver producto", "Vender", "Eliminar Producto"};
     public static JButton botones[];
-    private Logica_Mapa ejecutarAcciones;
+    private Controlador ejecutarAcciones;
     public static DefaultTableModel modeloTabla;
     public static JTable tabla;
     private static JScrollPane scrollPane;
+	public static Vista vista;
     
 
     public static void configurarTabla() {
@@ -45,12 +46,12 @@ public class InterfazGrafica_Mapa extends JFrame {
     }
 
     private void ejecutar() {
-        ejecutarAcciones = new Logica_Mapa(this);
+        ejecutarAcciones = new Controlador(this);
         ejecutarAcciones.escucharEventos();
     }
 
-    public InterfazGrafica_Mapa() {
-    	setTitle("Mapa Estudiantes");
+    public Vista() {
+    	setTitle("Mapa Inventario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 400);
         contentPane = new JPanel();
@@ -60,8 +61,8 @@ public class InterfazGrafica_Mapa extends JFrame {
         contentPane.setLayout(null);
         
         try {
-            //Se establece el Look and Feel de JTattoo (MintLookAndFeel en este caso)
-            UIManager.setLookAndFeel(new MintLookAndFeel());
+            //Se establece el Look and Feel de JTattoo (TextureLookAndFeel en este caso)
+            UIManager.setLookAndFeel(new TextureLookAndFeel());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
@@ -88,7 +89,7 @@ public class InterfazGrafica_Mapa extends JFrame {
     }
 
     public static void main(String[] args) {
-        InterfazGrafica_Mapa frame = new InterfazGrafica_Mapa();
+        Vista frame = new Vista();
         frame.setResizable(false);
         frame.setVisible(true);
     }
