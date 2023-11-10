@@ -18,7 +18,7 @@ public class Vista extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private static JPanel contentPane;
-    private static String[] arrayBotones = {"Añadir Producto", "Ver producto", "Vender", "Eliminar Producto"};
+    private static String[] arrayBotones = {"Añadir Producto", "Ver producto", "Vender", "Eliminar Producto", "Ver ventas"};
     public static JButton botones[];
     private Controlador ejecutarAcciones;
     public static DefaultTableModel modeloTabla;
@@ -53,7 +53,7 @@ public class Vista extends JFrame {
     public Vista() {
     	setTitle("Mapa Inventario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 600, 400);
+        setBounds(100, 100, 750, 400);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 

@@ -43,7 +43,7 @@ public class Producto {
 	
 	//Método toString
 	public String toString() {
-		return "Nombre: " + nombre + "\nPrecio: " + precio + "\nStock:  " + stock;
+		return nombre + ", " + precio + "$ y " + stock + " unidades";
 	}
 	
 }
