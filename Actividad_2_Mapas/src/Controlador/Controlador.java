@@ -7,14 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.print.CancelablePrintJob;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 import Vista.Vista;
-
+	
 public class Controlador implements ActionListener {
 
 	static Vista vista;
