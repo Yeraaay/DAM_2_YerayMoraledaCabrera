@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javax.swing.JOptionPane;
 
@@ -14,8 +15,8 @@ public class Controlador_1 implements ActionListener {
 	static Vista_1 vista;
 	static List<Integer> numerosPrimos = new ArrayList<>();
 	
-	public Controlador_1(Vista_1 vista_interraz_1) {
-		Vista_1.vista = vista_interraz_1;
+	public Controlador_1(Vista_1 vista_interfaz_1) {
+		Vista_1.vista = vista_interfaz_1;
 	}
 	
 	public void escucharEventos() {
@@ -25,12 +26,7 @@ public class Controlador_1 implements ActionListener {
 	//Método para comprobar si un número es primo
     public static boolean esPrimo(int numero) {
         if (numero <= 1) return false;
-        for (int i = 2; i <= Math.sqrt(numero); i++) {
-            if (numero % i == 0) {
-                return false;
-            }
-        }
-        return true;
+        return IntStream.rangeClosed(2, (int) Math.sqrt(numero)).noneMatch(i -> numero % i == 0);
     }
 	
 	//Método utilizado para ordenar de forma descendente los números primos previamente obtenidos

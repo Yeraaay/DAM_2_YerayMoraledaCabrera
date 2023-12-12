@@ -13,11 +13,11 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
-import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 
-import Controlador.Controlador_1;
+import Controlador.Controlador_2;
 
-public class Vista_1 extends JFrame {
+public class Vista_2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static JPanel contentPane;
@@ -27,14 +27,14 @@ public class Vista_1 extends JFrame {
 	public static JLabel label2;
 	public static JLabel label3;
 	public static JTextArea[] textarea;
-	public static JTextArea textareaOrdenado;
+	public static JTextArea textareaSumas;
 	protected static Font fuente = new Font("Arial", Font.PLAIN, 18);
-	public static Vista_1 vista;
-	private Controlador_1 ejecutarAcciones;
+	public static Vista_2 vista;
+	private Controlador_2 ejecutarAcciones;
 	
 	
-	public Vista_1() {
-		setTitle("Números Primos Lambda");
+	public Vista_2() {
+		setTitle("Mapeo de Datos Lambda");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 400);
 		contentPane = new JPanel();
@@ -44,8 +44,8 @@ public class Vista_1 extends JFrame {
 		contentPane.setLayout(null);
 		
         try {
-            //Se establece el Look and Feel de JTattoo (AluminiumLookAndFeel en este caso)
-            UIManager.setLookAndFeel(new AluminiumLookAndFeel());
+            //Se establece el Look and Feel de JTattoo (McWinLookAndFeel en este caso)
+            UIManager.setLookAndFeel(new McWinLookAndFeel());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class Vista_1 extends JFrame {
 	}
 	
 	public static void configurarBoton() {
-		botonAniadir = new JButton("Añadir Número");
+		botonAniadir = new JButton("Añadir Texto");
 		botonAniadir.setBounds(210, 30, 140, 40);
 		Font fuenteBoton = new Font("Arial", Font.BOLD, 15);
 		botonAniadir.setFont(fuenteBoton);
@@ -76,11 +76,11 @@ public class Vista_1 extends JFrame {
 	}
 	
 	private static void configurarJLabel() {
-		label1 = new JLabel("Números primos");
+		label1 = new JLabel("Texto completo");
 		label1.setBounds(20, 60, 100, 40);
-		label2 = new JLabel("Números enteros");
-		label2.setBounds(200, 60, 100, 40);
-		label3 = new JLabel("Números primos ordenados");
+		label2 = new JLabel("Cantidad de caractéres");
+		label2.setBounds(200, 60, 160, 40);
+		label3 = new JLabel("Suma de caractéres");
 		label3.setBounds(20, 190, 300, 40);
 		
 		contentPane.add(label1);
@@ -104,16 +104,16 @@ public class Vista_1 extends JFrame {
 	}
 	
 	public static void configurarTextAreaOrdenado() {
-		textareaOrdenado = new JTextArea();
-		textareaOrdenado.setBounds(20, 220, 340, 120);
-		textareaOrdenado.setFont(fuente);
-		textareaOrdenado.setEditable(false);
+		textareaSumas = new JTextArea();
+		textareaSumas.setBounds(20, 220, 340, 120);
+		textareaSumas.setFont(fuente);
+		textareaSumas.setEditable(false);
 		
-		contentPane.add(textareaOrdenado);
+		contentPane.add(textareaSumas);
 	}
 	
 	public void ejecutar() {
-		ejecutarAcciones = new Controlador_1(this);
+		ejecutarAcciones = new Controlador_2(this);
 		ejecutarAcciones.escucharEventos();
 	}
 
