@@ -59,28 +59,23 @@ public class Controlador_5 implements ActionListener {
 		Vista_5.textareaSumas.setText(sumaPorPartes.toString() + "\nSuma Total de las partes: " + sumaTotalPartes + ".");
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == Vista_5.botonAniadir) {
-
-					int cantidadDivisores = Integer.parseInt(Vista_5.textfield.getText());
-					Vista_5.configurarTextArea();
-					Vista_5.configurarTextAreaSumas();
-					subListas = dividirLista(listaNumeros, cantidadDivisores);
-					mostrarSumas();
-				} else JOptionPane.showMessageDialog(null, "Ingresa un número válido");
-	}
-
-	private void reiniciarValores() {
-		Vista_5.textfield.setText("");
-		if (Vista_5.textarea != null) {
-			for (JTextArea area : Vista_5.textarea) {
-				area.setText("");
-			}
-		}
-		if (Vista_5.textareaSumas != null) {
-			Vista_5.textareaSumas.setText("");
-		}
-	}
-
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == Vista_5.botonAniadir) {
+            String input = Vista_5.textfield.getText().trim();
+            if (!input.isEmpty()) {
+                try {
+                    int cantidadDivisores = Integer.parseInt(input);
+                    Vista_5.configurarTextArea();
+                    Vista_5.configurarTextAreaSumas();
+                    subListas = dividirLista(listaNumeros, cantidadDivisores);
+                    mostrarSumas();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Ingresa un número válido");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, ingresa un número");
+            }
+        }
+    }
 
 }
