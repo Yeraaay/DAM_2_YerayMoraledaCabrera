@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.text.html.HTMLEditorKit;
 
 import com.jtattoo.plaf.texture.TextureLookAndFeel;
 
@@ -116,7 +117,8 @@ public class Conecta4 extends JFrame implements ActionListener {
 		// Elemento centrado (un poco raro pero no encontraba otra forma factible)
 		JMenuItem helpMenuItem = new JMenuItem("           Ayuda");
 		helpMenuItem.setFont(new Font("Arial", Font.BOLD, 21));
-		helpMenuItem.setForeground(Color.BLUE);
+		helpMenuItem.setForeground(Color.WHITE);
+		helpMenuItem.setBackground(Color.BLUE);
 		helpMenuItem.addActionListener(e -> showHelp());
 		menuBar.add(helpMenuItem);
 
