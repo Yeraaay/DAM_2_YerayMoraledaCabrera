@@ -3,17 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/bootstrap.css">
-    <link rel="stylesheet" href="/CSS/style.css">
-    <title> Repaso Enero </title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <!--Como estamos en la cuesta de Enero, icono de un coche subiendo esa cuesta-->
+    <link rel="icon" type="image/png" href="../img/cuesta-arriba.png">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" defer ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" defer ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" defer ></script>
+    <script src="../js/bootstrap.bundle.js" defer ></script>
+    <script src="../js/script.js" defer ></script>
+    <title>Repaso Enero</title>
 </head>
 <body>
-    <div class="card">
-        <img src="/img/git.png" alt="Imagen GIT">
+
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li id="headerLI" class="nav-item m-md-1"><a href="#" class="nav-link bg-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Inicio</font></font></a></li>
+            <li id="headerLI" class="nav-item m-md-1"><a href="https://git-scm.com/" target="_blank" class="nav-link bg-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Git</font></font></a></li>
+            <li id="headerLI" class="nav-item m-md-1"><a href="https://www.docker.com/" target="_blank" class="nav-link bg-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Docker</font></font></a></li>
+            <li id="headerLI" class="nav-item m-md-1 dropdown">
+                <a class="nav-link bg-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Preguntas frecuentes</font></font>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" target="_blank" href="https://es.bitdegree.org/tutoriales/tutorial-git/" onclick="mostrarDesplegable('git')">Git</a>
+                    <a class="dropdown-item" target="_blank" href="https://es.bitdegree.org/tutoriales/docker-tutorial/" onclick="mostrarDesplegable('docker')">Docker</a>
+                </div>
+            </li>
+        </ul>
+    </header>
+
+    <main>
+        <div class="container">
+
+        <div class="card mb-3" style="max-width: 100%; min-height: 45vh;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="../img/git.png" class="card-img m-md-3" alt="Imagen Git">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title">GIT</h4>
+                  <p class="card-text">
+                    Git es un sistema de control de versiones distribuido que transforma la colaboración en el desarrollo de software. 
+                    Permite rastrear cambios en el código, coordinar el trabajo eficientemente y mantener un historial completo. Algunos puntos clave:
+                    <br><br>
+                    - <strong>Definición:</strong> Git es una herramienta que gestiona versiones de código, facilitando el desarrollo colaborativo.
+                    <br>
+                    - <strong>Uso:</strong> Es esencial para mantener un seguimiento de las modificaciones en el código y favorecer la colaboración.
+                    <br>
+                    - <strong>Ventajas:</strong> Facilita la gestión de proyectos y la integración de código con funciones como ramificación y fusión.
+                    <br><br>
+                    <strong>Comandos Básicos:</strong>
+                    <br>
+                    - <code>git init</code>: Inicia un nuevo repositorio.
+                    <br>
+                    - <code>git add &lt;archivo&gt;</code>: Agrega cambios al área de preparación.
+                    <br>
+                    - <code>git commit -m "Mensaje"</code>: Realiza un commit con los cambios preparados.
+                    <br>
+                    - <code>git push</code>: Envía los cambios al repositorio remoto.
+                    <br>
+                    - <code>git pull</code>: Obtiene y fusiona los cambios del repositorio remoto.
+                </p>
+                  <div class="d-flex justify-content-center">
+                    <a href="https://git-scm.com/" target="_blank"><input name="botonGit" id="botonGit" class="btn btn-primary" type="button" value="Saber Más"/></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 100%; min-height: 45vh;">
+            <div class="row no-gutters">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title">Docker</h4>
+                  <p class="card-text">
+                    Docker revoluciona la forma en que desarrollamos, implementamos y ejecutamos aplicaciones mediante la contenedorización.
+                    Permite empaquetar aplicaciones y sus dependencias en contenedores independientes, ofreciendo portabilidad y eficiencia. Algunos puntos clave:
+                    <br><br>
+                    - <strong>Definición:</strong> Docker utiliza contenedores para empaquetar y distribuir aplicaciones con todas sus dependencias.
+                    <br>
+                    - <strong>Uso:</strong> Facilita la creación de entornos de desarrollo consistentes y la implementación eficiente en diversos entornos.
+                    <br>
+                    - <strong>Ventajas:</strong> Ofrece portabilidad, eficiencia y escalabilidad en la implementación de aplicaciones.
+                    <br><br>
+                    <strong>Comandos Básicos:</strong>
+                    <br>
+                    - <code>docker pull &lt;imagen&gt;</code>: Descarga una imagen desde Docker Hub.
+                    <br>
+                    - <code>docker build -t &lt;nombre&gt;</code>: Construye una imagen a partir de un Dockerfile.
+                    <br>
+                    - <code>docker run &lt;imagen&gt;</code>: Ejecuta un contenedor basado en una imagen.
+                    <br>
+                    - <code>docker ps</code>: Muestra los contenedores en ejecución.
+                    <br>
+                    - <code>docker stop &lt;contenedor&gt;</code>: Detiene un contenedor en ejecución.
+                </p>
+                  <div class="d-flex justify-content-center">
+                    <a href="https://www.docker.com/" target="_blank"><input name="botonDocker" id="botonDocker" class="btn btn-primary" type="button" value="Saber Más"/></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <img src="../img/docker.png" class="card-img mt-md-5" alt="Imagen Docker">
+              </div>
+            </div>
+        </div>
+
     </div>
-    <br><br><br>
-    <div class="card">
-        <img src="/img/docker.png" alt="Imagen DOCKER">
-    </div>
+    </main>
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+          <span class="mb-3 mb-md-0 text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> <strong>© 2024 Ilerna - Yeray Moraleda Cabrera</strong></font></font></span>
+        </div>
+    
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3"><a class="text-muted" href="../HTML/contact.html"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"><img src="../img/contact.png" alt="Contáctanos" style="max-height: 9vh; "></use></svg></a></li>
+        </ul>
+      </footer>
 </body>
 </html>
